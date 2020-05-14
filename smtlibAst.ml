@@ -129,6 +129,11 @@ let rec to_string_sorted_term =
   | Error x -> ("Error: "^x)
   | Zilch _ -> ""
 
+let rec my_concat (sep : string) (term_list : sorted_term list) : string = 
+  match term_list with
+  | Zilch () :: t -> ""^(my_concat sep t)
+  | h :: t -> (to_string_sorted_term h)^sep^(my_concat sep t)
+  | [] -> ""
+
 let rec to_string (l : t) = 
-  let l_str = (List.map (to_string_sorted_term) (l)) in
-  (String.concat "\n" l_str)
+  my_concat "\n" l

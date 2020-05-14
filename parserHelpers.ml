@@ -226,6 +226,7 @@ let bv_dec_to_bin (i : Numeral.t) (size : Numeral.t) : string =
   in
   ("#b"^(bv_to_string (pad bv (Numeral.sub size l))))
 
+(* Function that returns unsigned fixed-width int or bitvector version of a hexadecimal constant *)
 let bv_hex_to_bin (i : string) : string = 
   let len = String.length i in
   let rec hex_to_bv (i : string) (len : int) : bool list =
@@ -266,6 +267,12 @@ let bv_hex_to_bin (i : string) : string =
     | [] -> ""
   in
   ("#b"^(bv_to_string (hex_to_bv i len)))
+
+let rec optimized_concat (sep : string) (str_list : string list) : string = 
+  match str_list with
+  | "" :: t -> ""^(optimized_concat sep t)
+  | h :: t -> h^sep^(optimized_concat sep t)
+  | [] -> ""
 
 let concat_sp_sep_1 a = "("^a^")"
 let concat_sp_sep_2 a b = "("^a^" "^b^")"

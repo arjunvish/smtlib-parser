@@ -222,6 +222,6 @@ command:
 
 file:
   | l=nonempty_list(command) EOF 
-    { let s = ((String.concat "\n" l)^"\n") in
+    { let s = ((optimized_concat "\n" l)^"\n") in
       print_string s }
 ;
