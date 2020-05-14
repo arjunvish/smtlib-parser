@@ -91,7 +91,9 @@ sorted_term:
   | BVBIN
     { Bvbin $1 }
   | BVHEX
-    { Bvhex $1 }
+    { let len = (String.length $1) in
+      let s = (String.sub $1 2 (len-2)) in
+        Bvbin (bv_hex_to_bin s) }
   | LPAREN INDEX s=BVDEC l=INT RPAREN
     { let len = (String.length s) in
       let i_num = Numeral.of_string (String.sub s 2 (len-2)) in

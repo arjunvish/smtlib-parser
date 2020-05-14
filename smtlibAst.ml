@@ -29,7 +29,6 @@ type sorted_term =
   | Select of sorted_term * sorted_term
   | Store of sorted_term * sorted_term * sorted_term
   | Bvbin of string
-  | Bvhex of string
   | Bvand of sorted_term * sorted_term
   | Bvor of sorted_term * sorted_term
   | Bvxor of sorted_term * sorted_term
@@ -88,7 +87,6 @@ let rec to_string_sorted_term =
   | Store (x,y,z) -> concat_sp_sep_4 "store" (to_string_sorted_term x) (to_string_sorted_term y) 
                       (to_string_sorted_term z)
   | Bvbin x -> x
-  | Bvhex x -> x
   | Bvand (x,y) -> concat_sp_sep_3 "bvand" (to_string_sorted_term x) (to_string_sorted_term y)
   | Bvor (x,y) -> concat_sp_sep_3 "bvor" (to_string_sorted_term x) (to_string_sorted_term y)
   | Bvxor (x,y) -> concat_sp_sep_3 "bvxor" (to_string_sorted_term x) (to_string_sorted_term y)
