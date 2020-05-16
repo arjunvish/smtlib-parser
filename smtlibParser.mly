@@ -64,7 +64,7 @@ sorted_term:
       else
         (build_tree_left_ass "xor" args) }
   | LPAREN DISTINCT s1=sorted_term s2=sorted_term RPAREN
-    { Not (Eq (s1, s2)) 
+    { Not (Eq (s1, s2)) }
   | LPAREN EQUALS s1=sorted_term s2=sorted_term RPAREN
     { Eq (s1, s2) } 
   | LPAREN ITE s1=sorted_term s2=sorted_term s3=sorted_term RPAREN
